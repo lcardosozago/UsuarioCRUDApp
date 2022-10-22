@@ -1,0 +1,26 @@
+.new-button {
+  @apply flex;
+  @apply justify-end;
+}
+
+.users-table {
+  @apply border-2;
+  @apply border-gray-300;
+  @apply py-4;
+  @apply px-8;
+  @apply rounded-md;
+}
+
+.users-table > table {
+  @apply w-full;
+  @apply table-auto;
+}
+
+.users-table > table > thead {
+  @apply border-b-2;
+  @apply border-gray-500;
+}
+
+.users-table > table > thead > th {
+  @apply text-left;
+}

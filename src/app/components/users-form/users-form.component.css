@@ -1,0 +1,37 @@
+.form {
+  @apply bg-gray-100;
+  @apply rounded-lg;
+}
+
+.input-container {
+  @apply py-2;
+  @apply px-8;
+}
+
+.input {
+  @apply w-full;
+  @apply py-2;
+  @apply px-4;
+  @apply border-2;
+  @apply border-gray-400;
+  @apply rounded-lg;
+}
+
+.input-container > input {
+  @apply input;
+}
+
+.input-container > select {
+  @apply input;
+}
+
+.form-buttons {
+  @apply flex;
+  @apply justify-end;
+  @apply py-4;
+  @apply px-8;
+}
+
+.back-button {
+  @apply mx-2;
+}

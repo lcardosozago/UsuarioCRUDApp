@@ -1,0 +1,40 @@
+<div class="form">
+  <form [formGroup]="form">
+    <div class="input-container">
+      <input type="hidden" name="id" />
+      <div class="input-label">Nome</div>
+      <input type="text" name="nome" formControlName="nome" />
+    </div>
+    <div class="input-container">
+      <div class="input-label">Sobrenome</div>
+      <input type="text" name="sobrenome" formControlName="sobrenome" />
+    </div>
+    <div class="input-container">
+      <div class="input-label">E-mail</div>
+      <input type="email" name="email" formControlName="email" />
+    </div>
+    <div class="input-container">
+      <div class="input-label">Data de Nascimento</div>
+      <input type="date" name="dataNascimento" formControlName="dataNascimento" />
+    </div>
+    <div class="input-container">
+      <div class="input-label">Escolaridade</div>
+      <select name="escolaridade" formControlName="escolaridade">
+        <option value=""></option>
+        <option
+          *ngFor="let escolaridade of escolaridades; index as i"
+          [value]="escolaridade"
+        >
+          {{ escolaridade }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-buttons">
+      <button routerLink="/" class="btn back-button bg-blue-500 text-white">
+        Voltar
+      </button>
+      <button (click)="salvar()" class="btn save-button bg-green-600 text-white">Salvar</button>
+    </div>
+  </form>
+</div>

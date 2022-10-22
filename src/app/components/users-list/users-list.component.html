@@ -1,0 +1,31 @@
+<div class="new-button">
+  <button routerLink="/cadastrar" class="btn bg-blue-500 text-white">Novo</button>
+</div>
+<div class="users-table">
+  <table>
+    <thead>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Sobrenome</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Data de Nascimento</th>
+      <th scope="col">Escolaridade</th>
+      <th scope="col"></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios; index as i">
+        <td>{{usuario.id}}</td>
+        <td>{{usuario.nome}}</td>
+        <td>{{usuario.sobrenome}}</td>
+        <td>{{usuario.email}}</td>
+        <td>{{usuario.dataNascimento | date: 'dd/MM/yyyy': 'UTC'}}</td>
+        <td>{{usuario.escolaridade}}</td>
+        <td>
+          <button [routerLink]="['/visualizar', usuario.id]" routerLinkActive="active" class="btn bg-blue-300 text-white">Visualizar</button>
+          <button [routerLink]="['/editar', usuario.id]" routerLinkActive="active" class="btn bg-blue-500 text-white">Editar</button>
+          <button (click)="excluir(usuario.id)" class="btn bg-red-500 text-white">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
