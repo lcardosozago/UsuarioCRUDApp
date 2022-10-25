@@ -1,5 +1,10 @@
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router, TitleStrategy } from '@angular/router';
+import {
+  ActivatedRoute,
+  ParamMap,
+  Router,
+  TitleStrategy,
+} from '@angular/router';
 import { Escolaridade } from 'src/app/common/enums/escolaridade.enum';
 import { UsuarioService } from 'src/app/common/services/usuario.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -47,30 +52,42 @@ export class UsersFormComponent implements OnInit {
 
       this.usuarioId = +idParam;
 
-      this.usuarioService
-        .obter(this.usuarioId)
-        .subscribe((usuario) => {
-          if (!usuario) return;
+      this.usuarioService.obter(this.usuarioId).subscribe((usuario) => {
+        if (!usuario) return;
 
-          this.form.setValue({
-            id: usuario.id,
-            nome: usuario.nome,
-            sobrenome: usuario.sobrenome,
-            email: usuario.email,
-            dataNascimento: formatDate(usuario.dataNascimento, 'yyyy-MM-dd', this.locale),
-            escolaridade: usuario.escolaridade,
-          });
+        this.form.setValue({
+          id: usuario.id,
+          nome: usuario.nome,
+          sobrenome: usuario.sobrenome,
+          email: usuario.email,
+          dataNascimento: formatDate(
+            usuario.dataNascimento,
+            'yyyy-MM-dd',
+            this.locale
+          ),
+          escolaridade: usuario.escolaridade,
         });
+      });
     });
+  }
+
+  navegarParaListagem(): void {
+    this.router.navigate(['/']);
   }
 
   salvar(): void {
     const formValues = this.form.value;
 
-    if (this.usuarioId) this.usuarioService.editar(formValues).subscribe();
+    if (!this.usuarioId) {
+      this.usuarioService
+        .criar(formValues)
+        .subscribe(() => this.navegarParaListagem());
+    }
 
-    this.usuarioService.criar(formValues).subscribe();
-
-    this.router.navigate(['/']);
+    if (this.usuarioId) {
+      this.usuarioService
+        .editar(formValues)
+        .subscribe(() => this.navegarParaListagem());
+    }
   }
 }

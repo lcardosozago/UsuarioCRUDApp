@@ -8,9 +8,7 @@ import { UsuarioService } from 'src/app/common/services/usuario.service';
   selector: 'app-users-view',
   templateUrl: './users-view.component.html',
   styleUrls: ['./users-view.component.css'],
-  providers: [
-    UsuarioService
-  ]
+  providers: [UsuarioService],
 })
 export class UsersViewComponent implements OnInit {
   usuarioId: number;
@@ -32,14 +30,11 @@ export class UsersViewComponent implements OnInit {
 
       this.usuarioId = +idParam;
 
-      this.usuarioService
-        .obter(this.usuarioId)
-        .subscribe((usuario) => {
-          if (!usuario) return;
+      this.usuarioService.obter(this.usuarioId).subscribe((usuario) => {
+        if (!usuario) return;
 
-          this.usuario = usuario;
-        });
+        this.usuario = usuario;
+      });
     });
   }
-
 }
